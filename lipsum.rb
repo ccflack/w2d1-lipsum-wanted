@@ -10,7 +10,7 @@ puts lipsum_wanted.inspect
 puts number_wanted.inspect
 
 if number_wanted == 0
-  then number_wanted = 1
+  number_wanted = 1
 end
 
 case lipsum_wanted
@@ -24,8 +24,9 @@ case lipsum_wanted
     puts "That's not an Ipsum I know. I can make 3 types: For Samuel L. Jackson, use \"slipsum\". For Hipster-ese, use \"hipsum\". For Futurama, use \"fillerama\". Tell me what kind of filler text you need, followed by the number of paragraphs. For example, \"slipsum 2\" will get you 2 paragraphs of Samuel L. Jackson."
 end
 
+if output
 system ("echo #{(output * number_wanted).shellescape} | pbcopy")
-
 new_file = File.open("./#{lipsum_wanted}.html", "w+")
 new_file << ERB.new(File.read("index.html.erb")).result(binding)
 new_file.close
+end
